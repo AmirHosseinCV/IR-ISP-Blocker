@@ -10,7 +10,7 @@ fi
 function main_menu {
     clear
     echo "----------- IR-ISP-Blocker -----------"
-    echo "https://github.com/Kiya6955/IR-ISP-Blocker"
+    echo "https://github.com/AmirHosseinCV/IR-ISP-Blocker"
     echo "--------------------------------------"
     echo "Which ISP do you want to perform an action on?"
     echo "--------------------------------------"
@@ -23,8 +23,9 @@ function main_menu {
     echo "7-Pishgaman"
     echo "8-MobinNet"
     echo "9-ParsOnline"
-    echo "10-Unblock All"
-    echo "11-Exit"
+    echo "10-All Except Irancell & Rightel"
+    echo "11-Unblock All"
+    echo "12-Exit"
     read -p "Enter your choice: " isp
     case $isp in
     1) isp="MCI" blocking_menu ;;
@@ -36,8 +37,9 @@ function main_menu {
     7) isp="Pishgaman" blocking_menu ;;
     8) isp="MobinNet" blocking_menu ;;
     9) isp="ParsOnline" blocking_menu ;;
-    10) unblocker ;;
-    11) echo "Exiting..."; exit 0 ;;
+    10) isp="All-Except-Irancell-Rightel" blocking_menu ;;
+    11) unblocker ;;
+    12) echo "Exiting..."; exit 0 ;;
     *) echo "Invalid option"; main_menu ;;
     esac
 }
@@ -71,36 +73,39 @@ function blocking_menu {
 
     case $isp in
         "MCI")
-            IP_LIST=$(curl -s 'https://raw.githubusercontent.com/Kiya6955/IR-ISP-Blocker/main/mci-ips.ipv4')
+            IP_LIST=$(curl -s 'https://raw.githubusercontent.com/AmirHosseinCV/IR-ISP-Blocker/main/mci-ips.ipv4')
             ;;
         "MTN")
-            IP_LIST=$(curl -s 'https://raw.githubusercontent.com/Kiya6955/IR-ISP-Blocker/main/mtn-ips.ipv4')
+            IP_LIST=$(curl -s 'https://raw.githubusercontent.com/AmirHosseinCV/IR-ISP-Blocker/main/mtn-ips.ipv4')
             ;;
         "TCI")
-            IP_LIST=$(curl -s 'https://raw.githubusercontent.com/Kiya6955/IR-ISP-Blocker/main/tci-ips.ipv4')
+            IP_LIST=$(curl -s 'https://raw.githubusercontent.com/AmirHosseinCV/IR-ISP-Blocker/main/tci-ips.ipv4')
             ;;
         "Rightel")
-            IP_LIST=$(curl -s 'https://raw.githubusercontent.com/Kiya6955/IR-ISP-Blocker/main/rightel-ips.ipv4')
+            IP_LIST=$(curl -s 'https://raw.githubusercontent.com/AmirHosseinCV/IR-ISP-Blocker/main/rightel-ips.ipv4')
             ;;
         "Shatel")
-            IP_LIST=$(curl -s 'https://raw.githubusercontent.com/Kiya6955/IR-ISP-Blocker/main/shatel-ips.ipv4')
+            IP_LIST=$(curl -s 'https://raw.githubusercontent.com/AmirHosseinCV/IR-ISP-Blocker/main/shatel-ips.ipv4')
             ;;
         "AsiaTech")
-            IP_LIST=$(curl -s 'https://raw.githubusercontent.com/Kiya6955/IR-ISP-Blocker/main/asiatech-ips.ipv4')
+            IP_LIST=$(curl -s 'https://raw.githubusercontent.com/AmirHosseinCV/IR-ISP-Blocker/main/asiatech-ips.ipv4')
             ;;
         "Pishgaman")
-            IP_LIST=$(curl -s 'https://raw.githubusercontent.com/Kiya6955/IR-ISP-Blocker/main/pishgaman-ips.ipv4')
+            IP_LIST=$(curl -s 'https://raw.githubusercontent.com/AmirHosseinCV/IR-ISP-Blocker/main/pishgaman-ips.ipv4')
             ;;
         "MobinNet")
-            IP_LIST=$(curl -s 'https://raw.githubusercontent.com/Kiya6955/IR-ISP-Blocker/main/mobinnet-ips.ipv4')
+            IP_LIST=$(curl -s 'https://raw.githubusercontent.com/AmirHosseinCV/IR-ISP-Blocker/main/mobinnet-ips.ipv4')
             ;;
         "ParsOnline")
-            IP_LIST=$(curl -s 'https://raw.githubusercontent.com/Kiya6955/IR-ISP-Blocker/main/parsan-ips.ipv4')
+            IP_LIST=$(curl -s 'https://raw.githubusercontent.com/AmirHosseinCV/IR-ISP-Blocker/main/parsan-ips.ipv4')
+            ;;
+        "All-Except-Irancell-Rightel")
+            IP_LIST=$(curl -s 'https://raw.githubusercontent.com/AmirHosseinCV/IR-ISP-Blocker/main/except-irancell-rightel.ipv4')
             ;;
     esac
 
     if [ $? -ne 0 ]; then
-        echo "Failed to fetch the IP list. Please contact @Kiya6955"
+        echo "Failed to fetch the IP list. Please contact @AmirHosseinCV"
         read -p "Press enter to return to Menu" dummy
         blocking_menu
     fi      
